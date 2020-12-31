@@ -21,7 +21,7 @@ class StarsController {
         return retrieveStarsService(sessionCookie)
     }
 
-    @Scheduled(cron = "* */30 * * * *")
+    @Scheduled(cron = "0 */30 * * * *")
     fun cronJob() {
         val s = "Cron job run at " + Date()
         println(s)

@@ -1,15 +1,19 @@
 package com.workspace.aocdataapi.service
 
-import io.github.cdimascio.dotenv.Dotenv
 import org.jsoup.Jsoup
+import org.springframework.beans.factory.annotation.Value
+import org.springframework.stereotype.Component
 
 data class AoCEvent(var year: Int, var stars: Int)
 
-fun retrieveStarsService(): List<AoCEvent> {
-    val dotenv = Dotenv.load()
-    val sessionCookie: String = System.getenv("SESSION_COOKIE") ?: dotenv.get("SESSION_COOKIE") ?: "default"
-    val cookie = mapOf("session" to sessionCookie)
+@Component
+class Session {
+    @Value("\${SESSION_COOKIE}")
+    lateinit var sessionCookie: String
+}
 
+fun retrieveStarsService(session: String): List<AoCEvent> {
+    val cookie = mapOf("session" to session)
     val document = Jsoup.connect("https://adventofcode.com/events").cookies(cookie).get()
     val eventListDivs = document.getElementsByClass("eventlist-event")
 

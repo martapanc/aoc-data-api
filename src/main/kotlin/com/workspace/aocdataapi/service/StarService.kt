@@ -7,7 +7,7 @@ data class AoCEvent(var year: Int, var stars: Int)
 
 fun retrieveStarsService(): List<AoCEvent> {
     val dotenv = Dotenv.load()
-    val sessionCookie: String = dotenv.get("SESSION_COOKIE") ?: "default"
+    val sessionCookie: String = System.getenv("SESSION_COOKIE") ?: dotenv.get("SESSION_COOKIE") ?: "default"
     val cookie = mapOf("session" to sessionCookie)
 
     val document = Jsoup.connect("https://adventofcode.com/events").cookies(cookie).get()

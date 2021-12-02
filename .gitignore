@@ -38,3 +38,6 @@ out/
 
 .env
 src/main/resources/application.properties
+
+.DS_Store
+src/.DS_Store

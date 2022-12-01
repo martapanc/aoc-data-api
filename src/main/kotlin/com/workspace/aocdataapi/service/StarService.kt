@@ -20,7 +20,7 @@ fun retrieveStarsService(session: String): List<AoCEvent> {
     val events = mutableListOf<AoCEvent>()
 
     // If the user is not logged in, the `eventlist-event` div only contains the link to the year's event
-    if (eventListDivs[0].childNodeSize() < 5) {
+    if (eventListDivs[0].childNodeSize() < 3) {
         return events
     }
 

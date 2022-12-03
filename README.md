@@ -2,7 +2,7 @@
 
 Simple Rest API that:
  - logs into https://adventofcode.com/ using a user's session cookie
- - scrapes the "Events" page and retrieved the amount of stars obtained for each year
+ - scrapes the "Events" page and retrieved the number of stars obtained for each year
  - serves the result as JSON list in a convenient format.
  
  Sample response:
@@ -42,3 +42,9 @@ Rename `application.properties.local` to `application.properties` and paste your
 <img src="pictures/network.png" width="600" alt="Retrieving session cookie from site inspector" />
 
 <img src="pictures/cookie.png" width="500" alt="Retrieving session cookie via EditThisCookie" />
+
+You can either run the app in the IDE or in a Docker container, via 
+
+```bash
+$ docker.sh
+```

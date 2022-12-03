@@ -16,14 +16,14 @@ class DailyChallengeController {
     @Autowired
     lateinit var session: Session
 
-    @GetMapping(value = ["/{day}/test-input"], produces = ["text/plain"])
-    fun getDailyChallengeTestInput(@PathVariable("day") day: Int): String {
-        return getTestInput(day).content
+    @GetMapping(value = ["/{year}/{day}/test-input"], produces = ["text/plain"])
+    fun getDailyChallengeTestInput(@PathVariable("year") year: Int, @PathVariable("day") day: Int): String {
+        return getTestInput(year, day).content
     }
 
-    @GetMapping(value = ["/{day}/input"], produces = ["text/plain"])
-    fun getDailyChallengeInput(@PathVariable("day") day: Int): String {
+    @GetMapping(value = ["/{year}/{day}/input"], produces = ["text/plain"])
+    fun getDailyChallengeInput(@PathVariable("year") year: Int, @PathVariable("day") day: Int): String {
         val sessionCookie: String = session.sessionCookie
-        return getInput(day, sessionCookie).content
+        return getInput(year, day, sessionCookie).content
     }
 }

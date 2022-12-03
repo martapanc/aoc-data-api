@@ -6,12 +6,10 @@ import java.io.BufferedReader
 import java.io.InputStreamReader
 import java.net.HttpURLConnection
 import java.net.URL
-import java.util.*
 
 
-fun getTestInput(day: Int): Code {
-    val currentYear = Calendar.getInstance().get(Calendar.YEAR)
-    val document = Jsoup.connect("https://adventofcode.com/${currentYear}/day/${day}").get()
+fun getTestInput(year: Int, day: Int): Code {
+    val document = Jsoup.connect("https://adventofcode.com/${year}/day/${day}").get()
 
     val codeElements = document.getElementsByTag("code")
     if (codeElements.size > 0) {
@@ -21,10 +19,8 @@ fun getTestInput(day: Int): Code {
     return Code("not found")
 }
 
-fun getInput(day: Int, session: String): Code {
-    val currentYear = Calendar.getInstance().get(Calendar.YEAR)
-
-    val url = URL("https://adventofcode.com/${currentYear}/day/${day}/input")
+fun getInput(year: Int, day: Int, session: String): Code {
+    val url = URL("https://adventofcode.com/${year}/day/${day}/input")
     val con: HttpURLConnection = url.openConnection() as HttpURLConnection
     con.requestMethod = "GET"
     con.setRequestProperty("Content-Type", "text/plain")

@@ -1,14 +1,6 @@
-FROM adoptopenjdk/openjdk11:alpine-jre
+FROM adoptopenjdk:11-jre-hotspot
 
-WORKDIR /app
+ARG JAR_FILE=build/libs/*.jar
+COPY ${JAR_FILE} app.jar
 
-COPY build.gradle.kts settings.gradle.kts gradlew ./
-COPY gradle ./gradle
-
-RUN ./gradlew dependencies
-
-COPY src ./src
-
-RUN ./gradlew build
-
-ENTRYPOINT ["java", "-jar", "build/libs/aoc-data-api-1.0.0.jar"]
+ENTRYPOINT ["java", "-jar", "app.jar"]
